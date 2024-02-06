@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:inno_net_app/core/constants/text_form_fields_decorations_constants.dart';
+import 'package:inno_net_app/core/extensions/custom_gesture_detector.dart';
+import 'package:inno_net_app/core/extensions/page_navigation_extension.dart';
 import 'package:inno_net_app/core/extensions/screen_size_extension.dart';
+import 'package:inno_net_app/presentation/screens/auth_screens/sign_up_screens/sign_up_screen.dart';
 import 'package:inno_net_app/presentation/screens/common/base_screen.dart';
+import 'package:inno_net_app/presentation/widgets/button_widget.dart';
 import 'package:inno_net_app/presentation/widgets/custom_text_form_field.dart';
+import 'package:page_transition/page_transition.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -15,7 +19,9 @@ final textFormFields = [
   const CustomTextFormField(
     hintText: "Email",
   ),
-  const CustomTextFormField(hintText: "Password"),
+  const CustomTextFormField(
+    hintText: "Password",
+  ),
 ];
 
 class _LoginScreenState extends State<LoginScreen> {
@@ -23,13 +29,15 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return BaseScreen(
         child: Column(
+      // mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        25.h,
+        // 25.h,
+        50.h,
         Text(
           "InnoNet",
           style: Theme.of(context).textTheme.displayLarge,
         ),
-        25.h,
+        50.h,
         // text form fields
         ListView.separated(
             shrinkWrap: true,
@@ -51,32 +59,31 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
         25.h,
         // button to login
-        Container(
-            height: 50,
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-                borderRadius: DecorationConstants.borderRadius,
-                color: Theme.of(context).colorScheme.secondary),
-            child: Text(
-              "Log in",
-              style: TextStyle(
-                fontSize: 16,
-                color: Theme.of(context).colorScheme.onSecondary,
-              ),
-            )),
+        ButtonWidget(
+          buttonText: "Log in",
+          onTap: () {},
+        ),
         50.h,
         // sign up text
-        const Row(
+        Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              "Don't have an account?  ",
+            const Text(
+              "Don't have an account?",
             ),
-            Text(
+            const Text(
               "Sign up",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
               ),
+            ).customGestureDetector(
+              onTap: () {
+                // push the sign up screen
+                context.pushWithTransition(
+                  SignUpPage(),
+                  PageTransitionType.rightToLeftWithFade,
+                );
+              },
             ),
           ],
         ),

@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:inno_net_app/app.dart';
+import 'package:inno_net_app/service_locator.dart';
 
 void main() async {
+  //Setting up ServiceLocator
+  ServiceLocator.setupLocator();
   WidgetsFlutterBinding.ensureInitialized();
+
   //Setting SystemUIOverlay
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     systemStatusBarContrastEnforced: false,
