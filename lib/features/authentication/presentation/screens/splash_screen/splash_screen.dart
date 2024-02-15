@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:inno_net_app/core/extensions/page_navigation_extension.dart';
-import 'package:inno_net_app/presentation/screens/auth_screens/login_screens/login_screen.dart';
+import 'package:inno_net_app/features/authentication/presentation/screens/authentication/login_screens/login_screen.dart';
 import 'package:page_transition/page_transition.dart';
 
 /// [SplashScreen] is the first screen of the app.
@@ -17,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
     // delay for 2 seconds and then navigate to home screen
     Future.delayed(const Duration(seconds: 2), () {
       context.pushReplacementWithTransition(
-          const LoginScreen(), PageTransitionType.rightToLeftWithFade);
+          LoginScreen(), PageTransitionType.rightToLeftWithFade);
     });
     super.initState();
   }

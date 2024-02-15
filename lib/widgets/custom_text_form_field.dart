@@ -19,9 +19,11 @@ class CustomTextFormField extends StatelessWidget {
       autovalidateMode: autovalidateMode,
       validator: validator,
       controller: controller,
+
       cursorColor:
           Theme.of(context).colorScheme.secondary, // Set the cursor color h
       decoration: InputDecoration(
+        errorMaxLines: 2,
         isDense: true,
         hintText: hintText,
         hintStyle: Theme.of(context).textTheme.labelSmall,

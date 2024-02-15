@@ -1,32 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:inno_net_app/core/entities/user_entities.dart';
-import 'package:inno_net_app/core/extensions/custom_gesture_detector.dart';
+import 'package:inno_net_app/features/authentication/domain/entities/user_entities.dart';
 import 'package:inno_net_app/core/extensions/screen_size_extension.dart';
-import 'package:inno_net_app/presentation/screens/common/base_screen.dart';
-import 'package:inno_net_app/presentation/utils/form_keys.dart';
-import 'package:inno_net_app/presentation/widgets/button_widget.dart';
-import 'package:inno_net_app/presentation/widgets/custom_text_form_field.dart';
+import 'package:inno_net_app/features/authentication/presentation/screens/authentication/widgets/sign_in_and_sign_up_prompt.dart';
+import 'package:inno_net_app/features/authentication/presentation/screens/common/base_screen.dart';
+import 'package:inno_net_app/features/authentication/presentation/utils/form_keys.dart';
+import 'package:inno_net_app/widgets/button_widget.dart';
+import 'package:inno_net_app/widgets/custom_text_form_field.dart';
 import 'package:inno_net_app/service_locator.dart';
 
 class SignUpPage extends StatelessWidget {
   SignUpPage({super.key});
   final formFields = [
     CustomTextFormField(
-      hintText: "First Name",
-      validator: locator<UserEntities>().validateName,
+      hintText: "Full Name",
+      validator: locator<FormFieldValidateClass>().validateName,
       autovalidateMode: AutovalidateMode.onUserInteraction,
-    ),
-    const CustomTextFormField(
-      hintText: "Last Name",
     ),
     CustomTextFormField(
       hintText: "Email",
-      validator: locator<UserEntities>().isValidEmail,
+      validator: locator<FormFieldValidateClass>().isValidEmail,
       autovalidateMode: AutovalidateMode.onUserInteraction,
     ),
     CustomTextFormField(
       hintText: "Password",
-      validator: locator<UserEntities>().validatePassword,
+      validator: locator<FormFieldValidateClass>().validatePassword,
       autovalidateMode: AutovalidateMode.onUserInteraction,
     ),
   ];
@@ -54,7 +51,7 @@ class SignUpPage extends StatelessWidget {
               itemBuilder: (context, index) {
                 return formFields[index];
               },
-              itemCount: 4,
+              itemCount: 3,
               separatorBuilder: (context, index) => 25.h,
               shrinkWrap: true,
               primary: false),
@@ -69,26 +66,12 @@ class SignUpPage extends StatelessWidget {
               }
             },
           ),
-          50.h,
+          20.h,
           // sign in text
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text(
-                "Already have an account?",
-              ),
-              const Text(
-                "Sign in",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
-              ).customGestureDetector(
-                onTap: () {
-                  Navigator.pop(context);
-                  // push the sign up screen
-                },
-              ),
-            ],
+          SignInAndSignUpPrompt(
+            action: "Log in",
+            instruction: "Already have an account?",
+            onTap: () => Navigator.pop(context),
           ),
         ],
       ),
