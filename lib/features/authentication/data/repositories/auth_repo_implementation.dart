@@ -7,7 +7,7 @@ import 'package:inno_net_app/features/authentication/domain/repositories/auth_re
 ///It implements the [AuthRepository] abstract class
 ///It has a [registerWithEmailAndPassword] method that returns a [UserEntity] if the user is registered successfully
 ///It has a [Failure] if the user is not registered successfully
-///
+/// hlo
 
 class AuthRepoImplementation implements AuthRepository {
   @override
