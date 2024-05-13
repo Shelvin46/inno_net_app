@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:inno_net_app/features/authentication/domain/entities/user_entities.dart';
 import 'package:inno_net_app/core/extensions/screen_size_extension.dart';
 import 'package:inno_net_app/features/authentication/presentation/screens/authentication/widgets/sign_in_and_sign_up_prompt.dart';
-import 'package:inno_net_app/features/authentication/presentation/screens/common/base_screen.dart';
+import 'package:inno_net_app/features/common/base_screen.dart';
 import 'package:inno_net_app/features/authentication/presentation/utils/form_keys.dart';
 import 'package:inno_net_app/widgets/button_widget.dart';
 import 'package:inno_net_app/widgets/custom_text_form_field.dart';
