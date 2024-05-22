@@ -1,9 +1,12 @@
 import 'package:awesome_extensions/awesome_extensions.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:inno_net_app/core/constants/decorations_constants.dart';
 import 'package:inno_net_app/core/extensions/custom_gesture_detector.dart';
 import 'package:inno_net_app/core/extensions/page_navigation_extension.dart';
 import 'package:inno_net_app/core/extensions/screen_size_extension.dart';
 import 'package:inno_net_app/features/authentication/domain/entities/user_entities.dart';
+import 'package:inno_net_app/features/authentication/presentation/blocs/sign_in_and_sign_up_bloc/sign_in_and_sign_up_bloc.dart';
 import 'package:inno_net_app/features/authentication/presentation/screens/authentication/forgot_password_screens/forgot_password_email_verification_screen.dart';
 import 'package:inno_net_app/features/authentication/presentation/screens/authentication/sign_up_screens/sign_up_screen.dart';
 import 'package:inno_net_app/features/authentication/presentation/screens/authentication/widgets/sign_in_and_sign_up_prompt.dart';
@@ -12,7 +15,6 @@ import 'package:inno_net_app/features/common/root_bottom_navigation_bar.dart';
 import 'package:inno_net_app/service_locator.dart';
 import 'package:inno_net_app/widgets/button_widget.dart';
 import 'package:inno_net_app/widgets/custom_text_form_field.dart';
-
 import 'package:page_transition/page_transition.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -23,14 +25,26 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  late TextEditingController emailController;
+  late TextEditingController passwordController;
+
+  @override
+  void initState() {
+    emailController = TextEditingController();
+    passwordController = TextEditingController();
+    super.initState();
+  }
+
   // text form fields
-  final textFormFields = [
+  late final textFormFields = [
     CustomTextFormField(
+      controller: emailController,
       hintText: "Email",
       validator: locator<FormFieldValidateClass>().isValidEmail,
       autovalidateMode: AutovalidateMode.onUserInteraction,
     ),
     CustomTextFormField(
+      controller: passwordController,
       hintText: "Password",
       validator: locator<FormFieldValidateClass>().validatePassword,
       autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -42,6 +56,8 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   void dispose() {
     formKey.currentState?.dispose();
+    emailController.dispose();
+    passwordController.dispose();
     super.dispose();
   }
 
@@ -85,14 +101,31 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
           25.h,
           // button to login
-          ButtonWidget(
-            buttonText: "Log in",
-            onTap: () {
-              if (formKey.currentState!.validate()) {
-                debugPrint("Validated");
-                context.pushWithTransition(
+          BlocConsumer<SignInAndSignUpBloc, SignInAndSignUpState>(
+            listener: (context, state) {
+              if (state is SignInAndSignUpSuccessState) {
+                context.pushReplacementWithTransition(
                     const RootBottomNavigationBar(), PageTransitionType.fade);
               }
+            },
+            builder: (context, state) {
+              if (state is SignInAndSignUpLoadingState) {
+                return const ButtonLoadingWidget();
+              }
+              return ButtonWidget(
+                buttonText: "Log in",
+                onTap: () {
+                  if (formKey.currentState!.validate()) {
+                    debugPrint("Validated");
+
+                    context.read<SignInAndSignUpBloc>().add(
+                          SignInWithEmailAndPasswordEvent(
+                              email: emailController.text,
+                              password: passwordController.text),
+                        );
+                  }
+                },
+              );
             },
           ),
           20.h,
@@ -106,5 +139,31 @@ class _LoginScreenState extends State<LoginScreen> {
         ],
       ),
     ));
+  }
+}
+
+class ButtonLoadingWidget extends StatelessWidget {
+  const ButtonLoadingWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        margin: const EdgeInsets.all(8),
+        height: 50,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+            borderRadius: DecorationConstants.borderRadius,
+            // color: Theme.of(context).colorScheme.secondary,
+            gradient: const LinearGradient(colors: [
+              Color(0xFF5051F9),
+              Color(0xFF1EA7FF),
+            ])),
+        child: const SizedBox(
+          height: 30,
+          width: 30,
+          child: CircularProgressIndicator(backgroundColor: Colors.white),
+        ));
   }
 }

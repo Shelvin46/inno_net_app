@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
-///[Failure] is an abstract class that is used to handle errors in the application
-abstract class Failure extends Equatable {
+///[Failure] is an class that is used to handle errors in the application
+class Failure extends Equatable {
   final String message;
   const Failure({required this.message});
   @override

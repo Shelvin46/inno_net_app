@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:inno_net_app/core/constants/color_constants.dart';
 import 'package:inno_net_app/core/constants/text_style_constants.dart';
+import 'package:inno_net_app/features/authentication/presentation/blocs/sign_in_and_sign_up_bloc/sign_in_and_sign_up_bloc.dart';
 import 'package:inno_net_app/features/authentication/presentation/screens/splash_screen/splash_screen.dart';
 import 'package:inno_net_app/features/home/presentation/blocs/bloc/scroll_view_listener_bloc.dart';
 
@@ -64,6 +65,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => ScrollViewListenerBloc()),
+        BlocProvider(create: (context) => SignInAndSignUpBloc()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

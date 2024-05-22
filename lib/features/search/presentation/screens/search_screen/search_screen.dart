@@ -1,8 +1,4 @@
-import 'package:awesome_extensions/awesome_extensions.dart';
-import 'package:flutter/cupertino.dart';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});

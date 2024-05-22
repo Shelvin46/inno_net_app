@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:inno_net_app/core/extensions/screen_size_extension.dart';
 
 /// [HomePagePostsShowTile] is a class that is used to display the home page post show tile.
@@ -21,24 +22,13 @@ class HomePagePostsShowTile extends StatelessWidget {
                 height: 40,
                 width: 40,
                 margin: const EdgeInsets.only(left: 5, bottom: 5),
-
                 // specify width to make it an oval, remove for a circle
                 decoration: const BoxDecoration(
-                  color: Colors.blue,
-                  // color: Colors.red,
                   shape: BoxShape.circle, // this makes it round
                 ),
-                child: const ClipOval(
-                    // child: profileDetails['image'].isEmpty
-                    //     ? Container(
-                    //         color: const Color.fromARGB(255, 183, 175, 175),
-                    //         child: SvgPicture.asset(
-                    //             "assets/avua-pool/defaultImage.svg"))
-                    //     : CachedNetworkImage(
-                    //         imageUrl: profileDetails['image'],
-                    //         fit: BoxFit.fill,
-                    //       ),
-                    )),
+                child: ClipOval(
+                  child: SvgPicture.asset("assets/home/apple.svg"),
+                )),
             5.w,
             Text(
               'InnoNet',

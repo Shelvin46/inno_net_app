@@ -12,4 +12,8 @@ abstract class AuthRepository {
   Future<Either<Failure, UserEntity>> registerWithEmailAndPassword(
     UserEntity userEntity,
   );
+
+  Future<Either<Failure, UserEntity>> signInWithEmailAndPassword(
+    UserEntity userEntity,
+  );
 }
