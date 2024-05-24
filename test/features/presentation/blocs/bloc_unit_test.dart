@@ -1,28 +1,27 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:inno_net_app/features/authentication/data/repositories/auth_repo_implementation.dart';
 import 'package:inno_net_app/features/authentication/domain/entities/user_entities.dart';
-import 'package:inno_net_app/features/authentication/domain/repositories/auth_repo.dart';
 import 'package:inno_net_app/features/authentication/domain/usecases/auth_usecases.dart';
 import 'package:inno_net_app/features/authentication/presentation/blocs/sign_in_and_sign_up_bloc/sign_in_and_sign_up_bloc.dart';
-import 'package:inno_net_app/service_locator.dart';
+
 import 'package:mockito/mockito.dart';
 
-// class MockSignInAndSignUpBloc extends Mock implements SignInAndSignUpBloc {}
+class MockAuthUsecase extends Mock implements AuthUseCases {}
+
 // final mockAuthUseCases = AuthUseCases(authRepository: );
 void main() {
   group("SignIn Bloc", () {
     late SignInAndSignUpBloc signInAndSignUpBloc;
-    late AuthUseCases mockAuthUseCases;
+    late MockAuthUsecase mockAuthUseCases;
 
     const userEntity = UserEntity(
         name: "", email: "shelvinvarghese6@gmail.com", password: "Qwerty@123");
     const params = Params(userEntity: userEntity);
 
     setUp(() {
-      final repository = AuthRepoImplementation();
-      mockAuthUseCases = AuthUseCases(authRepository: repository);
+      // final repository = AuthRepoImplementation();
+      mockAuthUseCases = MockAuthUsecase();
       signInAndSignUpBloc = SignInAndSignUpBloc();
     });
 

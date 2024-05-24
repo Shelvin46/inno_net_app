@@ -93,7 +93,9 @@ class _RootBottomNavigationBarState extends State<RootBottomNavigationBar> {
                         ),
                       ],
                     )
-                  : const SafeArea(child: CupertinoSearchTextField());
+                  : _selectedIndex == 1
+                      ? const SafeArea(child: CupertinoSearchTextField())
+                      : const SizedBox.shrink();
             },
           ).paddingOnly(right: 5, left: 5),
         ),

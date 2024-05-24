@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:inno_net_app/core/constants/color_constants.dart';
 import 'package:inno_net_app/core/constants/text_style_constants.dart';
+import 'package:inno_net_app/features/article/presentation/blocs/get_articles/get_articles_bloc.dart';
 import 'package:inno_net_app/features/authentication/presentation/blocs/sign_in_and_sign_up_bloc/sign_in_and_sign_up_bloc.dart';
 import 'package:inno_net_app/features/authentication/presentation/screens/splash_screen/splash_screen.dart';
 import 'package:inno_net_app/features/home/presentation/blocs/bloc/scroll_view_listener_bloc.dart';
@@ -66,6 +67,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => ScrollViewListenerBloc()),
         BlocProvider(create: (context) => SignInAndSignUpBloc()),
+        BlocProvider(create: (context) => GetArticlesBloc())
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

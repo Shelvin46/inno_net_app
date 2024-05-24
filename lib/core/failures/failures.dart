@@ -8,6 +8,26 @@ class Failure extends Equatable {
   List<Object> get props => [message];
 }
 
+class NetworkException extends Failure {
+  const NetworkException({required String message}) : super(message: message);
+}
+
+class APIException extends Failure {
+  const APIException({required String message}) : super(message: message);
+}
+
+class ParsingException extends Failure {
+  const ParsingException({required String message}) : super(message: message);
+}
+
+class CustomTimeoutException extends Failure {
+  const CustomTimeoutException({required String message})
+      : super(message: message);
+}
+
+
+
+
 ///[ServerFailure] is a class that is used to handle server errors in the application
 ///It extends the [Failure] class
 ///It takes in a [message] parameter which is a string
@@ -20,51 +40,51 @@ class Failure extends Equatable {
 ///It has a [props] method that returns a list of the message
 ///It has a [==] method that returns a boolean value
 ///It has a [hashCode] method that returns the hashcode of the message
-class ServerFailure extends Failure {
-  const ServerFailure({required String message}) : super(message: message);
-  @override
-  String toString() => message;
-  ServerFailure copyWith({String? message}) {
-    return ServerFailure(message: message ?? this.message);
-  }
+// class ServerFailure extends Failure {
+//   const ServerFailure({required String message}) : super(message: message);
+//   @override
+//   String toString() => message;
+//   ServerFailure copyWith({String? message}) {
+//     return ServerFailure(message: message ?? this.message);
+//   }
 
-  Map<String, dynamic> toJson() {
-    return {
-      'message': message,
-    };
-  }
+//   Map<String, dynamic> toJson() {
+//     return {
+//       'message': message,
+//     };
+//   }
 
-  factory ServerFailure.fromJson(Map<String, dynamic> json) {
-    return ServerFailure(
-      message: json['message'],
-    );
-  }
+//   factory ServerFailure.fromJson(Map<String, dynamic> json) {
+//     return ServerFailure(
+//       message: json['message'],
+//     );
+//   }
 
-  factory ServerFailure.fromMap(Map<String, dynamic> map) {
-    return ServerFailure(
-      message: map['message'],
-    );
-  }
+//   factory ServerFailure.fromMap(Map<String, dynamic> map) {
+//     return ServerFailure(
+//       message: map['message'],
+//     );
+//   }
 
-  Map<String, dynamic> toMap() {
-    return {
-      'message': message,
-    };
-  }
+//   Map<String, dynamic> toMap() {q
+//     return {
+//       'message': message,
+//     };
+//   }
 
-  @override
-  List<Object> get props => [message];
+//   @override
+//   List<Object> get props => [message];
 
-  @override
-  bool get stringify => true;
+//   @override
+//   bool get stringify => true;
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
+//   @override
+//   bool operator ==(Object other) {
+//     if (identical(this, other)) return true;
 
-    return other is ServerFailure && other.message == message;
-  }
+//     return other is ServerFailure && other.message == message;
+//   }
 
-  @override
-  int get hashCode => message.hashCode;
-}
+//   @override
+//   int get hashCode => message.hashCode;
+// }

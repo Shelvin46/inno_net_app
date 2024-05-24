@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:inno_net_app/core/failures/failures.dart';
-import 'package:inno_net_app/features/home/data/models/article_model.dart';
+import 'package:inno_net_app/features/article/data/models/article_model.dart';
 
 /// [ArticleRepo] is an abstract class that is used to get the articles.
 /// It is used to get the articles.
