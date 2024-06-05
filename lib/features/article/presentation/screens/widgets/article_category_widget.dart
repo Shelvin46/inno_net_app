@@ -14,30 +14,29 @@ class ArticleCategoriesWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 90,
+      // height: 90,
+      height: 30,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: articleCategories.length,
         itemBuilder: (context, index) {
           final articleCategory = articleCategories[index];
-          return Column(
-            children: [
-              Container(
-                height: 60,
-                width: 70,
-                margin: const EdgeInsets.only(right: 10),
-                decoration: const BoxDecoration(shape: BoxShape.circle),
-                child: SvgPictureWidget(
-                  imageUrl: articleCategory.imageUrl,
-                ),
+          return ChoiceChip(
+              color: MaterialStatePropertyAll<Color>(
+                Theme.of(context).colorScheme.onBackground,
               ),
-              5.heightBox,
-              Text(
+              shape: RoundedRectangleBorder(
+                // side: BorderSide(
+                //   color: Theme.of(context).colorScheme.primary,
+                //   width: 1,
+                // ),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              label: Text(
                 articleCategory.title,
                 style: context.textTheme.labelMedium,
               ),
-            ],
-          );
+              selected: false);
         },
       ),
     );

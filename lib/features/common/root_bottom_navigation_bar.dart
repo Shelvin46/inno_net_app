@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:inno_net_app/core/extensions/page_navigation_extension.dart';
+import 'package:inno_net_app/features/article/presentation/blocs/get_articles/get_articles_bloc.dart';
 import 'package:inno_net_app/features/article/presentation/screens/article_screen/article_screen.dart';
 import 'package:inno_net_app/features/common/widgets/root_bottom_navigation_bar_icon_widget.dart';
 import 'package:inno_net_app/features/home/presentation/blocs/bloc/scroll_view_listener_bloc.dart';
@@ -59,6 +60,12 @@ class _RootBottomNavigationBarState extends State<RootBottomNavigationBar> {
         _selectedIndex = index;
       });
     }
+  }
+
+  @override
+  void initState() {
+    context.read<GetArticlesBloc>().add(const GetArticles());
+    super.initState();
   }
 
   @override

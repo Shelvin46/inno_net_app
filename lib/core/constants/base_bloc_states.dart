@@ -29,21 +29,36 @@ class SuccessState extends BaseState {
 }
 
 class NoInternetState extends BaseState {
-  const NoInternetState({required String message});
+  const NoInternetState();
+
+  @override
+  List<Object> get props => [];
 }
 
 class TimeoutErrorState extends BaseState {
-  const TimeoutErrorState({required String message});
+  const TimeoutErrorState();
+
+  @override
+  List<Object> get props => [];
 }
 
 class FormatExceptionState extends BaseState {
-  const FormatExceptionState({required String message});
+  const FormatExceptionState();
+
+  @override
+  List<Object> get props => [];
 }
 
 class ParsingErrorState extends BaseState {
-  const ParsingErrorState({required String message});
+  const ParsingErrorState();
+
+  @override
+  List<Object> get props => [];
 }
 
 class ServerErrorState extends BaseState {
-  const ServerErrorState({required String message});
+  const ServerErrorState();
+
+  @override
+  List<Object> get props => [];
 }

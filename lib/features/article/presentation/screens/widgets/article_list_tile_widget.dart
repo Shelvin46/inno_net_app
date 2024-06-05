@@ -1,14 +1,20 @@
 import 'package:awesome_extensions/awesome_extensions.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:inno_net_app/features/article/data/models/article_model.dart';
 
 class ArticleListTileWidget extends StatelessWidget {
   const ArticleListTileWidget({
     super.key,
+    required this.article,
   });
-
+  final Article article;
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 100,
       padding: const EdgeInsets.all(10),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -20,23 +26,32 @@ class ArticleListTileWidget extends StatelessWidget {
               Text(
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
-                "Apple",
+                article.title ?? "Unknown title",
                 style: context.textTheme.titleLarge,
-              ),
+              ).flexible(flex: 3),
               5.heightBox,
               Text(
                 maxLines: 3,
                 overflow: TextOverflow.ellipsis,
-                "Apple is a fruit",
+                article.description ?? "Unknown description",
                 style: context.textTheme.titleSmall,
-              ),
+              ).flexible(),
             ],
           ).expanded(),
           10.widthBox,
-          Container(
+          SizedBox(
             height: 75,
             width: 75,
-            color: Colors.red,
+
+            // color: Colors.red,
+            child: CachedNetworkImage(
+              imageUrl: article.urlToImage ?? "",
+              fit: BoxFit.fill,
+              errorWidget: (context, url, error) => SvgPicture.asset(
+                'assets/images/image_not_found.svg',
+                fit: BoxFit.fill,
+              ),
+            ),
           ),
         ],
       ),

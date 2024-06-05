@@ -28,7 +28,8 @@ class GetArticlesBloc extends Bloc<GetArticlesEvent, BaseState> {
           left,
         );
 
-        final state = CustomExceptionHandler.exceptions[failureMessage];
+        final state =
+            CustomExceptionHandler.exceptions[failureMessage["error"]];
 
         return emit(state);
       }, (right) {

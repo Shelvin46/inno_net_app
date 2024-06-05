@@ -15,6 +15,7 @@ import 'package:inno_net_app/features/common/root_bottom_navigation_bar.dart';
 import 'package:inno_net_app/service_locator.dart';
 import 'package:inno_net_app/widgets/button_widget.dart';
 import 'package:inno_net_app/widgets/custom_text_form_field.dart';
+import 'package:inno_net_app/widgets/loading_button.dart';
 import 'package:page_transition/page_transition.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -139,31 +140,5 @@ class _LoginScreenState extends State<LoginScreen> {
         ],
       ),
     ));
-  }
-}
-
-class ButtonLoadingWidget extends StatelessWidget {
-  const ButtonLoadingWidget({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        margin: const EdgeInsets.all(8),
-        height: 50,
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-            borderRadius: DecorationConstants.borderRadius,
-            // color: Theme.of(context).colorScheme.secondary,
-            gradient: const LinearGradient(colors: [
-              Color(0xFF5051F9),
-              Color(0xFF1EA7FF),
-            ])),
-        child: const SizedBox(
-          height: 30,
-          width: 30,
-          child: CircularProgressIndicator(backgroundColor: Colors.white),
-        ));
   }
 }

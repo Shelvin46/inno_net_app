@@ -16,6 +16,11 @@ class ArticleScreen extends StatefulWidget {
 }
 
 class _ArticleScreenState extends State<ArticleScreen> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
   final List<ArticleCategoriesModel> articleCategories = [
     const ArticleCategoriesModel(
       title: "Apple",
@@ -32,12 +37,6 @@ class _ArticleScreenState extends State<ArticleScreen> {
   ];
 
   @override
-  void initState() {
-    context.read<GetArticlesBloc>().add(const GetArticles());
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Column(
       children: [
@@ -51,16 +50,44 @@ class _ArticleScreenState extends State<ArticleScreen> {
                   shrinkWrap: true,
                   primary: false,
                   itemBuilder: (context, index) {
-                    return const ArticleListTileWidget();
+                    final article = state.articles[index];
+                    return ArticleListTileWidget(
+                      article: article,
+                    );
                   },
                   separatorBuilder: (context, index) {
                     return const CustomDivider();
                   },
-                  itemCount: 10);
+                  itemCount: state.articles.length);
             } else if (state is LoadingState) {
               return const Center(child: CircularProgressIndicator.adaptive());
+            } else if (state is TimeoutErrorState) {
+              return Text(
+                "Timeout Error try again later",
+                style: context.textTheme.titleLarge,
+              ).toCenter();
+            } else if (state is ParsingErrorState) {
+              return Text(
+                "Parsing error try again later",
+                style: context.textTheme.titleLarge,
+              ).toCenter();
+            } else if (state is ServerErrorState) {
+              return Text(
+                "Something went wrong please try again later",
+                style: context.textTheme.titleLarge,
+              ).toCenter();
+            } else if (state is NoInternetState) {
+              return Text(
+                "Check your internet connection",
+                style: context.textTheme.titleLarge,
+              ).toCenter();
+            } else if (state is FormatExceptionState) {
+              return Text(
+                "Format error try again later",
+                style: context.textTheme.titleLarge,
+              ).toCenter();
             } else {
-              return const Center(child: Text("Error"));
+              return const Center(child: CircularProgressIndicator.adaptive());
             }
           },
         ).expanded()

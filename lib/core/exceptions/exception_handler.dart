@@ -45,20 +45,10 @@ class CustomExceptionHandler implements Exception {
   }
 
   static Map<String, dynamic> exceptions = {
-    "Timeout Error": const TimeoutErrorState(
-      message: "Timeout Error occurred try again later",
-    ),
-    "Invalid Format": const ParsingErrorState(
-      message: "Invalid Format please try again later",
-    ),
-    "Invalid Request": const FormatExceptionState(
-      message: "Invalid Request please try again later",
-    ),
-    "No internet": const NoInternetState(
-      message: "Check your internet connection",
-    ),
-    "Something went wrong": const ServerErrorState(
-      message: "Something went wrong please try again later",
-    )
+    "Timeout Error": const TimeoutErrorState(),
+    "Invalid Format": const ParsingErrorState(),
+    "Invalid Request": const FormatExceptionState(),
+    "No internet": const NoInternetState(),
+    "Something went wrong": const ServerErrorState()
   };
 }
