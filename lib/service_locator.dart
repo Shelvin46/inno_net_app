@@ -32,3 +32,8 @@ class ServiceLocator {
     locator<Dio>().interceptors.add(CustomDioInterceptor());
   }
 }
+// Dependency injections is an software designing pattern it deals with creation and management of dependencies into a class or module from outside
+// for doing this approach on flutter application we can use get_it package we can create a instance from the get_it package and register the dependencies into it
+/// what are the classes we registered on this get_it instance we can use those objects in anywhere in the application
+/// we can register the classes as singleton, factory, lazy singleton
+/// it will essential for making the code more testable and maintainable also for loose coupling

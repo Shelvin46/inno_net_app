@@ -12,10 +12,7 @@ part 'get_articles_state.dart';
 ///[GetArticlesBloc] extends [Bloc] class and takes [GetArticlesEvent] and [BaseState] as parameters
 ///[GetArticlesBloc] is used to get the articles from the API
 ///[GetArticlesBloc] is used to manage the state of the [ArticleScreen]
-///
-///
-/// After
-
+///[GetArticlesBloc] has a [GetArticlesBloc] constructor that takes [GetArticlesEvent] and [BaseState] as parameters
 class GetArticlesBloc extends Bloc<GetArticlesEvent, BaseState> {
   GetArticlesBloc() : super(GetArticlesInitial()) {
     on<GetArticles>((event, emit) async {
