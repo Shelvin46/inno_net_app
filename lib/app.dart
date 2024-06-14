@@ -19,8 +19,6 @@ class MyApp extends StatelessWidget {
     onSecondary: AppColors.white,
     error: AppColors.red,
     onError: AppColors.red,
-    background: AppColors.black,
-    onBackground: AppColors.black,
     surface: AppColors.black,
     onSurface: AppColors.black,
   );
@@ -33,8 +31,6 @@ class MyApp extends StatelessWidget {
     onSecondary: AppColors.black,
     error: AppColors.red,
     onError: AppColors.red,
-    background: AppColors.white,
-    onBackground: AppColors.grey,
     surface: AppColors.white,
     onSurface: AppColors.white,
   );
@@ -48,8 +44,6 @@ class MyApp extends StatelessWidget {
       onSecondary: AppColors.white,
       error: AppColors.white,
       onError: AppColors.white,
-      background: AppColors.white,
-      onBackground: AppColors.white,
       surface: AppColors.white,
       onSurface: AppColors.white,
     ),

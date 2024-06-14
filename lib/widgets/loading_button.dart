@@ -19,12 +19,10 @@ class ButtonLoadingWidget extends StatelessWidget {
               Color(0xFF5051F9),
               Color(0xFF1EA7FF),
             ])),
-        child: SizedBox(
+        child: const SizedBox(
           height: 30,
           width: 30,
-          child: CircularProgressIndicator.adaptive(
-            backgroundColor: Theme.of(context).colorScheme.onSurface,
-          ),
+          child: CircularProgressIndicator.adaptive(),
         ));
   }
 }

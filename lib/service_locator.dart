@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:inno_net_app/core/exceptions/exception_handler.dart';
+import 'package:inno_net_app/features/article/data/datasources/remote/custom_dio_interceptor.dart';
 import 'package:inno_net_app/features/article/domain/usecases/article_usecases.dart';
 import 'package:inno_net_app/features/authentication/domain/entities/user_entities.dart';
 import 'package:inno_net_app/features/authentication/data/repositories/auth_repo_implementation.dart';
@@ -27,5 +28,7 @@ class ServiceLocator {
     locator.registerLazySingleton(() => ArticleUsecases());
     locator.registerSingleton<ArticleRepo>(ArticlesRepoImplementation());
     locator.registerSingleton<Dio>(Dio());
+    locator.registerLazySingleton(() => CustomExceptionHandler());
+    locator<Dio>().interceptors.add(CustomDioInterceptor());
   }
 }

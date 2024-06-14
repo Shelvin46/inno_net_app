@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:inno_net_app/config/api_keys.dart';
 import 'package:inno_net_app/core/exceptions/exception_handler.dart';
 import 'package:inno_net_app/core/failures/failures.dart';
@@ -30,6 +31,8 @@ class ArticlesRepoImplementation implements ArticleRepo {
       }
     } catch (e) {
       return Left(CustomExceptionHandler.handleException(e as DioException));
+    } finally {
+      debugPrint('ArticlesRepoImplementation: getArticles()');
     }
   }
 }
