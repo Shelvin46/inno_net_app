@@ -1,7 +1,6 @@
 import 'package:awesome_extensions/awesome_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:inno_net_app/core/constants/decorations_constants.dart';
 import 'package:inno_net_app/core/extensions/custom_gesture_detector.dart';
 import 'package:inno_net_app/core/extensions/page_navigation_extension.dart';
 import 'package:inno_net_app/core/extensions/screen_size_extension.dart';

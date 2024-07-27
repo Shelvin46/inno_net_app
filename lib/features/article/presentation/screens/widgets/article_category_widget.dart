@@ -1,4 +1,3 @@
-import 'package:awesome_extensions/awesome_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:inno_net_app/features/article/presentation/screens/article_screen/article_screen.dart';
 
@@ -31,10 +30,10 @@ class ArticleCategoriesWidget extends StatelessWidget {
                 // ),
                 borderRadius: BorderRadius.circular(10),
               ),
-              label: Text(
-                articleCategory.title,
-                style: context.textTheme.labelMedium,
-              ),
+              label: Text(articleCategory.title,
+                  style: Theme.of(context).textTheme.labelSmall!.copyWith(
+                        color: Theme.of(context).colorScheme.onError,
+                      )),
               selected: false);
         },
       ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inno_net_app/core/constants/color_constants.dart';
 import 'package:inno_net_app/core/constants/decorations_constants.dart';
 import 'package:inno_net_app/core/extensions/custom_gesture_detector.dart';
 
@@ -22,9 +23,9 @@ class ButtonWidget extends StatelessWidget {
             ])),
         child: Text(
           buttonText,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 16,
-            color: Theme.of(context).buttonTheme.colorScheme?.primary,
+            color: AppColors.white,
           ),
         )).customGestureDetector(onTap: onTap);
   }

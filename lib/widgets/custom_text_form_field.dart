@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:inno_net_app/core/constants/decorations_constants.dart';
 
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField(
@@ -19,25 +18,23 @@ class CustomTextFormField extends StatelessWidget {
       autovalidateMode: autovalidateMode,
       validator: validator,
       controller: controller,
-
-      cursorColor:
-          Theme.of(context).colorScheme.secondary, // Set the cursor color h
+      cursorColor: Theme.of(context).colorScheme.surface,
       decoration: InputDecoration(
-        errorMaxLines: 2,
-        isDense: true,
-        hintText: hintText,
-        hintStyle: Theme.of(context).textTheme.labelSmall,
-        border: OutlineInputBorder(
-          borderRadius: DecorationConstants.borderRadius,
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: DecorationConstants.borderRadius,
-          borderSide: BorderSide(
-            color: Theme.of(context).colorScheme.secondary,
-            width: 2,
+          errorMaxLines: 2,
+          isDense: true,
+          hintText: hintText,
+          hintStyle: Theme.of(context).textTheme.labelSmall,
+          border: const OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+          )
+          // border: OutlineInputBorder(
+          //   borderRadius: DecorationConstants.borderRadius,
+          //   borderSide: BorderSide(
+          //     color: Theme.of(context).colorScheme.onSurface,
+          //     width: 1,
+          //   ),
+          // ),
           ),
-        ),
-      ),
     );
   }
 }

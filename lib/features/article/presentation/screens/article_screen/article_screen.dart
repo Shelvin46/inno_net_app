@@ -1,12 +1,9 @@
 import 'package:awesome_extensions/awesome_extensions.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:inno_net_app/core/constants/base_bloc_states.dart';
-import 'package:inno_net_app/features/article/presentation/blocs/get_articles/get_articles_bloc.dart';
-import 'package:inno_net_app/features/article/presentation/screens/widgets/article_category_widget.dart';
-import 'package:inno_net_app/features/article/presentation/screens/widgets/article_list_tile_widget.dart';
-import 'package:inno_net_app/features/article/presentation/screens/widgets/custom_divider.dart';
+
+import 'package:inno_net_app/features/article/presentation/screens/widgets/articles_widget.dart';
 
 class ArticleScreen extends StatefulWidget {
   const ArticleScreen({super.key});
@@ -15,9 +12,13 @@ class ArticleScreen extends StatefulWidget {
   State<ArticleScreen> createState() => _ArticleScreenState();
 }
 
-class _ArticleScreenState extends State<ArticleScreen> {
+class _ArticleScreenState extends State<ArticleScreen>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+
   @override
   void initState() {
+    _tabController = TabController(length: 3, vsync: this);
     super.initState();
   }
 
@@ -37,60 +38,46 @@ class _ArticleScreenState extends State<ArticleScreen> {
   ];
 
   @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        30.heightBox,
-        ArticleCategoriesWidget(articleCategories: articleCategories),
-        const CustomDivider(),
-        BlocBuilder<GetArticlesBloc, BaseState>(
-          builder: (context, state) {
-            if (state is GetArticlesState) {
-              return ListView.separated(
-                  shrinkWrap: true,
-                  primary: false,
-                  itemBuilder: (context, index) {
-                    final article = state.articles[index];
-                    return ArticleListTileWidget(
-                      article: article,
-                    );
-                  },
-                  separatorBuilder: (context, index) {
-                    return const CustomDivider();
-                  },
-                  itemCount: state.articles.length);
-            } else if (state is LoadingState) {
-              return const Center(child: CircularProgressIndicator.adaptive());
-            } else if (state is TimeoutErrorState) {
-              return Text(
-                "Timeout Error try again later",
-                style: context.textTheme.titleLarge,
-              ).toCenter();
-            } else if (state is ParsingErrorState) {
-              return Text(
-                "Parsing error try again later",
-                style: context.textTheme.titleLarge,
-              ).toCenter();
-            } else if (state is ServerErrorState) {
-              return Text(
-                "Something went wrong please try again later",
-                style: context.textTheme.titleLarge,
-              ).toCenter();
-            } else if (state is NoInternetState) {
-              return Text(
-                "Check your internet connection",
-                style: context.textTheme.titleLarge,
-              ).toCenter();
-            } else if (state is FormatExceptionState) {
-              return Text(
-                "Format error try again later",
-                style: context.textTheme.titleLarge,
-              ).toCenter();
-            } else {
-              return const Center(child: CircularProgressIndicator.adaptive());
-            }
-          },
-        ).expanded()
+        20.heightBox,
+
+        Align(
+          alignment: Alignment.centerLeft,
+          child: TabBar(
+            controller: _tabController,
+            tabAlignment: TabAlignment.start,
+            isScrollable: true,
+            labelPadding: const EdgeInsets.only(right: 10, left: 10),
+            dividerHeight: 0,
+            indicatorPadding: const EdgeInsets.only(bottom: 5),
+            dragStartBehavior: DragStartBehavior.start,
+            tabs: const [
+              Tab(text: "Apple"),
+              Tab(text: "Tesla"),
+              Tab(text: "TechCrunch"),
+            ],
+          ),
+        ),
+        // ArticleCategoriesWidget(articleCategories: articleCategories),
+        // const CustomDivider(),
+        Expanded(
+          child: TabBarView(
+            controller: _tabController,
+            children: const [
+              ArticlesWidget(),
+              ArticlesWidget(),
+              ArticlesWidget(),
+            ],
+          ),
+        )
       ],
     );
   }

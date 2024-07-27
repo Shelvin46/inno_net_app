@@ -11,10 +11,15 @@ import 'package:inno_net_app/service_locator.dart';
 class ArticlesRepoImplementation implements ArticleRepo {
   @override
   Future<Either<Failure, Articles>> getArticles() async {
+    // generate current date and time
+    final now = DateTime.now();
+    final formattedDate = "${now.year}-${now.month}-${now.day}";
+    final fromFormattedDate = "${now.year}-${now.month}-${now.day - 1}";
+
     final queryParameters = {
       'q': 'apple',
-      'from': '2024-05-16',
-      'to': '2024-05-16',
+      'from': fromFormattedDate,
+      'to': formattedDate,
       'sortBy': 'popularity',
       'apiKey': ApiKeys.articleApiKey,
     };
