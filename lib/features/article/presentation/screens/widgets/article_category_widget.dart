@@ -1,7 +1,6 @@
 import 'package:awesome_extensions/awesome_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:inno_net_app/features/article/presentation/screens/article_screen/article_screen.dart';
-import 'package:inno_net_app/widgets/custom_svg_picture_widget.dart';
 
 class ArticleCategoriesWidget extends StatelessWidget {
   const ArticleCategoriesWidget({
@@ -22,8 +21,8 @@ class ArticleCategoriesWidget extends StatelessWidget {
         itemBuilder: (context, index) {
           final articleCategory = articleCategories[index];
           return ChoiceChip(
-              color: MaterialStatePropertyAll<Color>(
-                Theme.of(context).colorScheme.onBackground,
+              color: WidgetStatePropertyAll<Color>(
+                Theme.of(context).colorScheme.onSurface,
               ),
               shape: RoundedRectangleBorder(
                 // side: BorderSide(
